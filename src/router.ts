@@ -7,11 +7,13 @@ import { createCategory } from './app/useCases/categories/createCategory';
 import { listCategories } from './app/useCases/categories/listCategories';
 import { createProduct } from './app/useCases/products/createProduct';
 import { listProducts } from './app/useCases/products/listProducts';
+import { deleteProduct } from './app/useCases/products/deleteProduct';
 import { listProductsByCategory } from './app/useCases/categories/listProductsByCategory';
 import { listOrders } from './app/useCases/orders/listOrders';
 import { createOrder } from './app/useCases/orders/createOrder';
 import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus';
 import { cancelOrder } from './app/useCases/orders/cancelOrder';
+import { deleteCategory } from './app/useCases/categories/deleteCategory';
 
 export const router = Router();
 
@@ -38,8 +40,14 @@ router.get('/products', listProducts);
 //Create product
 router.post('/products', upload.single('image'), createProduct);
 
+//Delete product
+router.delete('/products/:id', deleteProduct);
+
 // Get products by category
 router.get('/categories/:categoryId/products', listProductsByCategory);
+
+//Delete category
+router.delete('/categories/:id', deleteCategory);
 
 // List orders
 router.get('/orders', listOrders);
